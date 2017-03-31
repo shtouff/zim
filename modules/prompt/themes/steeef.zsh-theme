@@ -39,7 +39,14 @@ prompt_steeef_git() {
 }
 
 prompt_steeef_virtualenv() {
-  [[ -n ${VIRTUAL_ENV} ]] && print -n " (%F{blue}${VIRTUAL_ENV:t}%f)"
+  [[ -n ${VIRTUAL_ENV} ]] && {
+    color=81
+    if [[ x"${VIRTUAL_ENV:t}" == x".virtualenv" ]]; then
+      print -n " (%F{${color}}${VIRTUAL_ENV:h:t}%f)"
+    else
+      print -n " (%F{${color}}${VIRTUAL_ENV:t}%f)"
+    fi
+  }
 }
 
 prompt_steeef_precmd() {
@@ -47,7 +54,7 @@ prompt_steeef_precmd() {
 }
 
 prompt_steeef_setup() {
-  [[ -n ${VIRTUAL_ENV} ]] && export VIRTUAL_ENV_DISABLE_PROMPT=1
+  export VIRTUAL_ENV_DISABLE_PROMPT=1
 
   local col_user
   local col_host
