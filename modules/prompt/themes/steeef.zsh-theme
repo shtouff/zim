@@ -8,7 +8,7 @@ prompt_steeef_git() {
 }
 
 prompt_steeef_virtualenv() {
-  [[ -n ${VIRTUAL_ENV} ]] && print -n " (%F{blue}${VIRTUAL_ENV:t}%f)"
+  [[ -n ${VIRTUAL_ENV} ]] && print -n " (%F{81}${VIRTUAL_ENV:h:t}%f)"
 }
 
 prompt_steeef_precmd() {
@@ -16,7 +16,7 @@ prompt_steeef_precmd() {
 }
 
 prompt_steeef_setup() {
-  [[ -n ${VIRTUAL_ENV} ]] && export VIRTUAL_ENV_DISABLE_PROMPT=1
+  export VIRTUAL_ENV_DISABLE_PROMPT=1
 
   local purple
   local orange
